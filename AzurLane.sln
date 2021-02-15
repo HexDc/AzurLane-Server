@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GateWayServer", "GateWaySer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameServer", "GameServer\GameServer.csproj", "{0A9A5205-9E3E-40D8-9E61-026D6052F10F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TapDB", "TapDB\TapDB.csproj", "{6AEBF1BF-A525-43F5-B9BF-1012706B876C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TapDB", "TapDB\TapDB.csproj", "{6AEBF1BF-A525-43F5-B9BF-1012706B876C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AWS", "AWS\AWS.csproj", "{22259E33-DA6F-4FBD-8289-0939016D22FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AWS", "AWS\AWS.csproj", "{22259E33-DA6F-4FBD-8289-0939016D22FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commander", "Commander\Commander.csproj", "{5B3B2A2F-3A22-45B7-8B59-76E75237686F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Commander", "Commander\Commander.csproj", "{5B3B2A2F-3A22-45B7-8B59-76E75237686F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

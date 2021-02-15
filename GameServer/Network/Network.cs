@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
-using System.Threading;
 using System.Net.Sockets;
+using System.Text;
+using System.Threading;
 
-namespace TNetwork
+namespace GNetwork
 {
     public class Network
     {
@@ -11,16 +13,17 @@ namespace TNetwork
         Socket ListenSocket;
         IPEndPoint EndPoint;
 
-        public Network(int port = 443)
+        public Network(int port = 801)
         {
             ListenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             EndPoint = new IPEndPoint(IPAddress.Any, port);
-            ColorMsg(ConsoleColor.White, ConsoleColor.Black, $"TapDB Working on {port}");
+            ColorMsg(ConsoleColor.White, ConsoleColor.Black, $"GameServer Working on {port}");
         }
 
-        public void Start()
+        public bool Start()
         {
             new Thread(new ThreadStart(OnReceive)).Start();
+            return true;
         }
 
         private void OnReceive()
@@ -30,7 +33,7 @@ namespace TNetwork
             ListenSocket.Bind(EndPoint);
             ListenSocket.Listen(1000);
 
-            while(true)
+            while (true)
             {
                 ClientSocket = ListenSocket.Accept();
 
@@ -41,10 +44,12 @@ namespace TNetwork
                 ClientSocket.Close();
             }
         }
+
         public string PrintBytes(byte[] bytes)
         {
             return string.Join(", ", bytes);
         }
+
         private void ColorMsg(ConsoleColor backcolor, ConsoleColor forecolor, string format, params object[] args)
         {
             Console.BackgroundColor = backcolor;

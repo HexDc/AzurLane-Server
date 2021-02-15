@@ -49,7 +49,7 @@ namespace Scripts
                 m_proxy_port.Add(ini[string.Format("Server_{0}", i)]["proxy_port"].ToInt());
             }
             ini.Clear();
-            #region ERROR
+
             ini.Load(Directory.GetCurrentDirectory() + "\\config\\notice.ini");
             is_on = ini["Default"]["On"].ToInt() == 1 ? true : false;
             m_title = ini["Default"]["title"].ToString();
@@ -69,7 +69,6 @@ namespace Scripts
             {
                 m_content += "\n" + ini["Default"]["content_4"].ToString();
             }
-            #endregion
         }
         private byte[] Ma_10021()////////////Tutorial Packet!!!!!!!
         {

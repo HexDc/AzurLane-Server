@@ -1,6 +1,5 @@
 ﻿using System;
-using Command;
-using SNetwork;
+using GNetwork;
 using System.Data.SqlClient;
 
 namespace Manager
@@ -19,22 +18,7 @@ namespace Manager
 
         private bool CmdNetwork()
         {
-            ProCommand cmd = new ProCommand(m_cmdPort);
 
-            if (m_cmdUse)
-            {
-                if (!cmd.OnStart())
-                {
-                    Information("Processing Command ..");
-                    Information("failed\n");
-                    return false;
-                }
-            }
-            else
-            {
-                Information("Processing Command ..");
-                Information("done\n");
-            }
             return true;
         }
 
@@ -93,10 +77,7 @@ namespace Manager
             string connectstrings = $"Data Source={m_dbIP},{m_dbPort}; Initial Catalog={m_dbName}; User ID={m_dbID}; Password={m_dbPW}";
             try
             {
-                using (SqlConnection con = new SqlConnection(connectstrings))
-                {
-
-                }
+                using var con = new SqlConnection(connectstrings);
             }
             catch (TimeoutException e)
             {
@@ -107,9 +88,6 @@ namespace Manager
             {
                 Information(e.Message);
                 return false;
-            }
-            finally
-            {
             }
             Information("done\n");
 

@@ -11,8 +11,7 @@ namespace Scripts
     {
         public static void OnHash(Socket ClientSocket)
         {
-            byte[] data = _GetHashCode();
-            ClientSocket.Send(data, 0, data.Length, SocketFlags.None);
+            ClientSocket.Send(_GetHashCode(), 0, _GetHashCode().Length, SocketFlags.None);
         }
 
         private static byte[] _GetHashCode()
@@ -20,8 +19,8 @@ namespace Scripts
             MemoryStream memoryStream = new MemoryStream();
             List<string> m_version = new List<string>
             {
-                "$azhash$5$1$64$1d4d7986939f7df3",
-                "$cvhash$200$1ed1fbb72be2f1b8",
+                "$azhash$5$1$66$d1450368de02b1b0",
+                "$cvhash$201$6e5e160d6b363d8d",
                 "",
                 "",
                 "$l2dhash$203$bc6f7014e2e49ad6",
@@ -30,7 +29,7 @@ namespace Scripts
             };
             Serializer.Serialize(memoryStream, new sc_10801
             {
-                gateway_ip = "bl-kr-testo.kro.kr",
+                gateway_ip = "bl-kr-gate.xdg.com",
                 gateway_port = 80,
                 url = "https://play.google.com/store/apps/details?id=kr.txwy.and.blhx",
                 version = m_version,

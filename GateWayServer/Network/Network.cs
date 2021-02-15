@@ -14,12 +14,10 @@ namespace SNetwork
         private const int PK_USER_LOGIN_CMD = 10020;
         private const int WEB_CMD_LOAD_SERVER = 8239;
         private const int PK_10022 = 10022;
-
     }
 
     public partial class Network
     {
-
         Socket ClientSocket;
         Socket ListenSocket;
         IPEndPoint EndPoint;

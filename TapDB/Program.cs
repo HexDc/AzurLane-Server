@@ -7,6 +7,7 @@ namespace TapDB
     {
         static void Main(string[] args)
         {
+            Console.Title = "TapDB";
             new Network().Start();
         }
     }
