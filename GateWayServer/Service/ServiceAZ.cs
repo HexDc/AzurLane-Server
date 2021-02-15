@@ -32,7 +32,7 @@ namespace Service
                     Debug("USAGE : \r\n");
                     Debug("	    -c------------Run as service\r\n");
                     Debug("EXAMPLE : \r\n");
-                    Debug("AzurLane.exe -c AZLConfig.ini");
+                    Debug("GateWayServer.exe -c GateWay.ini");
                 }
             }
             else
