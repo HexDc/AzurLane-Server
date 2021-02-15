@@ -1,11 +1,10 @@
-﻿using log4net;
-using Scripts;
+﻿using Tool;
 using System;
+using Scripts;
 using System.Net;
-using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using Tool;
+using System.Net.Sockets;
 
 namespace SNetwork
 {
@@ -25,8 +24,6 @@ namespace SNetwork
         Socket ListenSocket;
         IPEndPoint EndPoint;
         Util util;
-
-        private static readonly ILog Log = LogManager.GetLogger(typeof(Network));
 
         public Network(int port)
         {

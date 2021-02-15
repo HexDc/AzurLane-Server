@@ -2,7 +2,6 @@
 using Command;
 using SNetwork;
 using System.Data.SqlClient;
-using System.Threading;
 
 namespace Manager
 {

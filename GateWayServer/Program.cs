@@ -1,7 +1,5 @@
-﻿using System;
+﻿using Service;
 using System.Threading;
-using Service;
-using ProtoBuf;
 
 namespace GateWayServer
 {
@@ -9,8 +7,10 @@ namespace GateWayServer
     {
         static void Main(string[] args)
         {
-            new Thread(new ThreadStart(new ServiceAZ(new string[] { "-c", "GateWay.ini" }).ServiceMainProc)).Start();
-            //.
+            if(args.Length < 1)
+                new Thread(new ThreadStart(new ServiceAZ(new string[] { "-c", "GateWay.ini" }).ServiceMainProc)).Start();
+            else
+                new Thread(new ThreadStart(new ServiceAZ(args).ServiceMainProc)).Start();
         }
     }
 }

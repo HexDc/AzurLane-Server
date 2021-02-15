@@ -1,13 +1,10 @@
-﻿using GateWayServer;
-using log4net;
-using System;
+﻿using System;
 using System.IO;
 
 namespace Service
 {
     partial class ServiceAZ
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(ServiceAZ));
 
         public ServiceAZ(string[] args)
         {
