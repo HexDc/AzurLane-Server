@@ -10,6 +10,7 @@ namespace GateWayServer
         static void Main(string[] args)
         {
             new Thread(new ThreadStart(new ServiceAZ(new string[] { "-c", "AZLConfig.ini" }).ServiceMainProc)).Start();
+            //.
         }
     }
 }
