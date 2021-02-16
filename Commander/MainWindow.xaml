@@ -1,0 +1,23 @@
+﻿<Window x:Class="Commander.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Commander"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="337*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="ID" HorizontalAlignment="Left" Margin="419,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="156" Background="#FFF0F0F0" FontSize="14" Grid.Column="1"/>
+        <PasswordBox x:Name="PW" HorizontalAlignment="Left" Margin="419,131,0,0"  VerticalAlignment="Top" Height="30" Width="156" Background="#FFF0F0F0" FontSize="14" Grid.Column="1"/>
+        <Label x:Name="Permission" Content="Login Please" HorizontalAlignment="Right" Margin="0,166,19,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Button Content="CHECK&#xa;PERMISSION" HorizontalAlignment="Left" Margin="580,96,0,0" VerticalAlignment="Top" Width="75" Height="65" Click="Button_Click" Grid.Column="1"/>
+        <Frame Content="" HorizontalAlignment="Left" Height="136" Margin="25,25,0,0" VerticalAlignment="Top" Width="343" Background="WhiteSmoke" Grid.ColumnSpan="2"/>
+        <Label Content="STATUS" HorizontalAlignment="Left" Margin="44,39,0,0" VerticalAlignment="Top" Foreground="#FF38B000"/>
+        <Label Content="CLIENT" HorizontalAlignment="Left" Margin="44,100,0,0" VerticalAlignment="Top" Foreground="#FF0F8984"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="25,331,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged_1" Grid.ColumnSpan="2"/>
+    </Grid>
+</Window>

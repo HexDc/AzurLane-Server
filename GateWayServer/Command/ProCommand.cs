@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Tool;
+using ProtoBuf;
+using System.IO;
 
 namespace Command
 {
@@ -32,10 +34,46 @@ namespace Command
 
         private void Start()
         {
+            byte[] m_bBuffer = new byte[512];
+            ListenSocket.Bind(EndPoint);
+            ListenSocket.Listen(5);
             while(true)
             {
-                //TODO
+                ClientSocket = ListenSocket.Accept();
+
+                util.ColorMsg(ConsoleColor.Yellow, ConsoleColor.Blue, $"Commander Connect:{ClientSocket.RemoteEndPoint}");
+
+                ClientSocket.Receive(m_bBuffer);
+
+                MemoryStream memoryStream = new MemoryStream(m_bBuffer);
+                PRO_COMMANDER cmd = Serializer.Deserialize<PRO_COMMANDER>(memoryStream);
+
+                switch (cmd.TYPE)
+                {
+                    case "LOGIN":
+                        if (CheckLogin(cmd.ID, cmd.PW))
+                            ClientSocket.Send(Encoding.Default.GetBytes("SUCCESS"), 0, Encoding.Default.GetBytes("SUCCESS").Length, SocketFlags.None);
+                        else
+                            ClientSocket.Send(Encoding.Default.GetBytes("FAILED"), 0, Encoding.Default.GetBytes("FAILED").Length, SocketFlags.None);
+                        break;
+                    default:
+                        util.ColorMsg(ConsoleColor.White, ConsoleColor.Black, Encoding.Default.GetString(m_bBuffer));
+                        break;
+                }
+                ClientSocket.Close();
             }
         }
+
+        private bool CheckLogin(string id, string pw)
+        {
+            return false;
+        }
+    }
+
+    public class PRO_COMMANDER
+    {
+        public string TYPE { get; set; }
+        public string ID { get; set; }
+        public string PW { get; set; }
     }
 }
