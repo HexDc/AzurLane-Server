@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Tool;
+﻿using Tool;
+using System;
 using ProtoBuf;
 using System.IO;
+using System.Net;
+using System.Text;
+using System.Threading;
+using System.Net.Sockets;
 
 namespace Command
 {
@@ -41,13 +38,21 @@ namespace Command
             {
                 ClientSocket = ListenSocket.Accept();
 
-                util.ColorMsg(ConsoleColor.Yellow, ConsoleColor.Blue, $"Commander Connect:{ClientSocket.RemoteEndPoint}");
+                util.ColorMsg(ConsoleColor.Yellow, ConsoleColor.Blue, $"Commander Connect: {ClientSocket.RemoteEndPoint}");
 
                 ClientSocket.Receive(m_bBuffer);
 
-                MemoryStream memoryStream = new MemoryStream(m_bBuffer);
-                PRO_COMMANDER cmd = Serializer.Deserialize<PRO_COMMANDER>(memoryStream);
+                MemoryStream memoryStream = null;
+                PRO_COMMANDER cmd = null;
+                try
+                {
+                    memoryStream = new MemoryStream(m_bBuffer);
+                    cmd = Serializer.Deserialize<PRO_COMMANDER>(memoryStream);
+                }
+                catch
+                {
 
+                }
                 switch (cmd.TYPE)
                 {
                     case "LOGIN":

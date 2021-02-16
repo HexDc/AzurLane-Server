@@ -46,8 +46,8 @@ namespace Commander
             string id = ID.Text;
             string pw = PW.Password;
             OnConnect(id, pw);
-
         }
+
         private void OnConnect(string _id, string _pw)
         {
             try
@@ -94,6 +94,7 @@ namespace Commander
                 Environment.Exit(0);
             }
         }
+
         private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
         {
 
