@@ -16,13 +16,20 @@ using System.Net.Sockets;
 using System.Net;
 using System.IO;
 using ProtoBuf;
+using System.Threading;
 
 namespace Commander
 {
+    [ProtoContract]
     public class PRO_COMMANDER
     {
+        [ProtoMember(1)]
         public string TYPE { get; set; }
+
+        [ProtoMember(2)]
         public string BOX1 { get; set; }
+
+        [ProtoMember(3)]
         public string BOX2 { get; set; }
     }
     /// <summary>
@@ -30,6 +37,8 @@ namespace Commander
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string id;
+        public string pw;
         public MainWindow()
         {
             InitializeComponent();
@@ -43,50 +52,25 @@ namespace Commander
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Permission.Content = "Processing ..";
-            string id = ID.Text;
-            string pw = PW.Password;
-            OnConnect(id, pw);
+            id = ID.Text;
+            pw = PW.Password;
+            new Thread(new ThreadStart(OnConnect)).Start();
         }
 
-        private void OnConnect(string _id, string _pw)
+        private void OnConnect()
         {
             try
             {
-                /////////////////////////////
-                IniFile ini = new IniFile();
-                ini.Load(Directory.GetCurrentDirectory() + "\\config.ini");
-
-                string svrAddr = ini["Default"]["IP"].ToString();
-                int svrPort = ini["Default"]["PORT"].ToInt();
-                /////////////////////////////
-                Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
-                IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(svrAddr), svrPort);
-                socket.Connect(endPoint);
-                byte[] buffer = new byte[512];
-                //BLOCKING
                 MemoryStream memoryStream = new MemoryStream();
                 Serializer.Serialize(memoryStream, new PRO_COMMANDER
                 {
                     TYPE = "LOGIN",
-                    BOX1 = _id,
-                    BOX2 = _pw
+                    BOX1 = id,
+                    BOX2 = pw
                 });
                 byte[] Array = memoryStream.ToArray();
                 memoryStream.Close();
-                socket.Send(Array, 0, Array.Length, SocketFlags.None);
-                while (Encoding.UTF8.GetString(buffer) != "disconnect")
-                {
-                    switch (Encoding.Default.GetString(buffer).Trim())
-                    {
-                        case "SUCCESS"://로그인 성공
-                            Permission.Content = "Administrator";
-                            break;
-                        case "FAILED"://로그인 실패
-                            Permission.Content = "FAILED TO LOGIN";
-                            break;
-                    }
-                }
+
             }
             catch(Exception e)
             {

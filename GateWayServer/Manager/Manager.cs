@@ -13,28 +13,6 @@ namespace Manager
             if (!LoadINI()) return false;
             if (!CreateDB()) return false;
             if (!ListenNetwork()) return false;
-            if (!CmdNetwork()) return false;
-            return true;
-        }
-
-        private bool CmdNetwork()
-        {
-            ProCommand cmd = new ProCommand(m_cmdPort);
-
-            if (m_cmdUse)
-            {
-                if (!cmd.OnStart())
-                {
-                    Information("Processing Command ..");
-                    Information("failed\n");
-                    return false;
-                }
-            }
-            else
-            {
-                Information("Processing Command ..");
-                Information("done\n");
-            }
             return true;
         }
 
