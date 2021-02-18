@@ -15,6 +15,7 @@ namespace Command
         Socket ListenSocket;
         IPEndPoint EndPoint;
         Util util;
+
         public ProCommand(int port = 20000)
         {
             util = new Util();
@@ -34,6 +35,10 @@ namespace Command
             byte[] m_bBuffer = new byte[512];
             ListenSocket.Bind(EndPoint);
             ListenSocket.Listen(5);
+            while(true)
+            {
+
+            }
         }
 
         private bool CheckLogin(string id, string pw)

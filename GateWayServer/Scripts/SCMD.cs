@@ -1,9 +1,8 @@
-﻿using Tool;
-using System;
-using System.Text;
-using System.Collections;
+﻿using System.Collections.Generic;
 using System.Net.Sockets;
-using System.Collections.Generic;
+using System.Collections;
+using System.Text;
+using Tool;
 
 namespace Scripts
 {
@@ -15,7 +14,7 @@ namespace Scripts
             string m_szdata = util.BytesToString(data);
             if (m_szdata.Contains("?cmd=load_server?"))
             {
-                util.ColorMsg(ConsoleColor.White, ConsoleColor.Black, "?cmd=load_server?");
+                //util.ColorMsg(ConsoleColor.White, ConsoleColor.Black, "?cmd=load_server?");
                 return @"HTTP/1.1 200 OK
 Content-Type: text/plain;charset=utf-8
 
@@ -23,8 +22,7 @@ Content-Type: text/plain;charset=utf-8
             }
             else
             {
-                util.ColorMsg(ConsoleColor.White, ConsoleColor.Black, "NoCmd");
-
+                //util.ColorMsg(ConsoleColor.White, ConsoleColor.Black, "NoCmd");
                 return "NoCmd";
             }
         }
