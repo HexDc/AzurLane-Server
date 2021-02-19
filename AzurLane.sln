@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AWS", "AWS\AWS.csproj", "{2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commander", "Commander\Commander.csproj", "{7A12E5A2-B9D4-4255-8317-184E9634944E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtoMaker", "ProtoMaker\ProtoMaker.csproj", "{97A5AC6D-D0B7-4C91-B3D8-BA43361CD085}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,18 @@ Global
 		{7A12E5A2-B9D4-4255-8317-184E9634944E}.x64|Any CPU.Build.0 = Debug|Any CPU
 		{7A12E5A2-B9D4-4255-8317-184E9634944E}.x64|x64.ActiveCfg = Debug|Any CPU
 		{7A12E5A2-B9D4-4255-8317-184E9634944E}.x64|x64.Build.0 = Debug|Any CPU
+		{97A5AC6D-D0B7-4C91-B3D8-BA43361CD085}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97A5AC6D-D0B7-4C91-B3D8-BA43361CD085}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97A5AC6D-D0B7-4C91-B3D8-BA43361CD085}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{97A5AC6D-D0B7-4C91-B3D8-BA43361CD085}.Debug|x64.Build.0 = Debug|Any CPU
+		{97A5AC6D-D0B7-4C91-B3D8-BA43361CD085}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97A5AC6D-D0B7-4C91-B3D8-BA43361CD085}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97A5AC6D-D0B7-4C91-B3D8-BA43361CD085}.Release|x64.ActiveCfg = Release|Any CPU
+		{97A5AC6D-D0B7-4C91-B3D8-BA43361CD085}.Release|x64.Build.0 = Release|Any CPU
+		{97A5AC6D-D0B7-4C91-B3D8-BA43361CD085}.x64|Any CPU.ActiveCfg = Debug|Any CPU
+		{97A5AC6D-D0B7-4C91-B3D8-BA43361CD085}.x64|Any CPU.Build.0 = Debug|Any CPU
+		{97A5AC6D-D0B7-4C91-B3D8-BA43361CD085}.x64|x64.ActiveCfg = Debug|Any CPU
+		{97A5AC6D-D0B7-4C91-B3D8-BA43361CD085}.x64|x64.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

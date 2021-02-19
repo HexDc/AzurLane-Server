@@ -3,9 +3,9 @@
 namespace p11
 {
     [ProtoContract]
-    public class sc_11201
+    public class cs_11609
     {
         [ProtoMember(1)]
-        public ACTIVITYINFO activity_info { get; set; }
+        public string password { get; set; }
     }
 }
