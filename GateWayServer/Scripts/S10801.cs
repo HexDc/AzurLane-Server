@@ -29,7 +29,7 @@ namespace Scripts
             };
             Serializer.Serialize(memoryStream, new sc_10801
             {
-                gateway_ip = "bl-kr-gate.xdg.com",
+                gateway_ip = "bl-kr-test.kro.kr",
                 gateway_port = 80,
                 url = "https://play.google.com/store/apps/details?id=kr.txwy.and.blhx",
                 version = m_version,

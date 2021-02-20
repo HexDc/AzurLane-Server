@@ -19,10 +19,9 @@ namespace Manager
 
         private bool CmdNetwork()
         {
-            ProCommand cmd = new ProCommand(20000);
-
             if (m_cmdUse)
             {
+                ProCommand cmd = new ProCommand(20000);
                 if (!cmd.OnStart())
                 {
                     Information("Processing Command ..");

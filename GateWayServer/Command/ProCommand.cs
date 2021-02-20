@@ -46,6 +46,7 @@ namespace Command
             return true;
         }
     }
+
     [ProtoContract]
     public class PRO_COMMANDER
     {

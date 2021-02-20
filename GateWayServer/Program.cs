@@ -1,15 +1,11 @@
-﻿using Command;
+﻿using System;
 using Service;
-using System;
-using System.Threading;
 
 namespace GateWayServer
 {
     class Program
     {
         static ServiceAZ SAZ;
-
-
 
         static void Main(string[] args)
         {

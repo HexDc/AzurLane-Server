@@ -14,7 +14,6 @@ namespace Scripts
             string m_szdata = util.BytesToString(data);
             if (m_szdata.Contains("?cmd=load_server?"))
             {
-                //util.ColorMsg(ConsoleColor.White, ConsoleColor.Black, "?cmd=load_server?");
                 return @"HTTP/1.1 200 OK
 Content-Type: text/plain;charset=utf-8
 
@@ -22,7 +21,6 @@ Content-Type: text/plain;charset=utf-8
             }
             else
             {
-                //util.ColorMsg(ConsoleColor.White, ConsoleColor.Black, "NoCmd");
                 return "NoCmd";
             }
         }
@@ -31,7 +29,7 @@ Content-Type: text/plain;charset=utf-8
             Dictionary<string, object> dic_1 = new Dictionary<string, object>
             {
                 { "id", 1 },
-                { "name", "명량" },
+                { "name", "SERVER#1" },
                 { "state", 0 },
                 { "flag", 1 },
                 { "sort", 1 }
@@ -64,14 +62,12 @@ Content-Type: text/plain;charset=utf-8
             };
             ArrayList arr = new ArrayList
             {
-                dic_1,
-                dic_2,
-                dic_3,
-                dic_4
+                dic_1
             };
             string data = JsonFx.Json.JsonWriter.Serialize(arr);
             return data;
         }//Just Dummy.. Client never Check
+
         public static void OnWeb(Socket ClientSocket, byte[] m_bBuffer)
         {
             byte[] buff = Encoding.UTF8.GetBytes(GetCmd(m_bBuffer));

@@ -21,7 +21,7 @@ namespace ProtoMaker
         {
             if(pname.IndexOf("_pb") == -1)
                 pname = pname + "_pb";
-            string Path = @"C:\Users\Admin\Desktop\AzurLaneData-master\AzurLaneData-master\ko-KR\net\protocol\"+pname+".lua";
+            string Path = @"C:\Users\Admin\Desktop\AzurLane-Server\AzurLane\ProtoMaker\net\protocol" + pname+".lua";
             string[] TextLines = File.ReadAllLines(Path);
             List<string> Contents = new List<string>();
             string word = Console.ReadLine().ToUpper();
