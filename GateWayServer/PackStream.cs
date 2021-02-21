@@ -31,7 +31,7 @@ namespace PacketStream
             this.pktBuffer = pktBuffer;
         }
 
-        public override string ToString()
+        public override string ToInt()
         {
             byte[] array = new byte[Length];
             Array.Copy(pktBuffer, array, Length);

@@ -81,17 +81,6 @@ public struct IniValue
             result = false;
             return true;
         }
-        else if(boolStr == "1")
-        {
-            result = true;
-            return true;
-        }
-        else if (boolStr == "0")
-        {
-            result = false;
-            return true;
-        }
-
         result = default(bool);
         return false;
     }
@@ -170,7 +159,7 @@ public struct IniValue
         }
     }
 
-    public override string ToString()
+    public override string ToInt()
     {
         return Value;
     }

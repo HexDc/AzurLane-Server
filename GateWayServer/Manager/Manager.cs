@@ -69,14 +69,14 @@ namespace Manager
             try
             {
                 ini.Load(m_szINI);
-                m_port = int.TryParse(ini["Default"]["Port"].ToString(), out int _) ? ini["Default"]["Port"].ToInt() : 80;
+                m_port = int.TryParse(ini["Default"]["Port"].ToInt(), out int _) ? ini["Default"]["Port"].ToInt() : 80;
 
-                m_dbIP = ini["SQL"]["IP"].ToString();
-                m_dbName = ini["SQL"]["Database"].ToString();
-                m_dbID = ini["SQL"]["ID"].ToString();
-                m_dbPW = ini["SQL"]["PW"].ToString();
-                m_dbPort = int.TryParse(ini["SQL"]["Port"].ToString(), out int _) ? ini["SQL"]["Port"].ToInt() : 1433;
-                m_cmdPort = int.TryParse(ini["Command"]["Port"].ToString(), out int _) ? ini["Command"]["Port"].ToInt() : 20000;
+                m_dbIP = ini["SQL"]["IP"].ToInt();
+                m_dbName = ini["SQL"]["Database"].ToInt();
+                m_dbID = ini["SQL"]["ID"].ToInt();
+                m_dbPW = ini["SQL"]["PW"].ToInt();
+                m_dbPort = int.TryParse(ini["SQL"]["Port"].ToInt(), out int _) ? ini["SQL"]["Port"].ToInt() : 1433;
+                m_cmdPort = int.TryParse(ini["Command"]["Port"].ToInt(), out int _) ? ini["Command"]["Port"].ToInt() : 20000;
                 m_cmdUse = ini["Command"]["UseCmd"].ToBool();
 
             }

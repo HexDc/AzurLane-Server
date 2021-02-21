@@ -10,19 +10,51 @@ namespace Scripts
     {
         public void OnTutorial(Socket ClientSocket)
         {
-            ClientSocket.Send(m_10023(), 0, m_10023().Length, SocketFlags.None);
+            byte[] data = m_10023();
+            ClientSocket.Send(data, 0, data.Length, SocketFlags.None);
         }
 
         private byte[] m_10023()
         {
+            byte[] array;
+            using (var ms = new MemoryStream())
+            {
+                Serializer.Serialize(ms, new sc_10023
+                {
+                    result = 0,//0은 튜토리얼 보내기.
+                    user_id = 643028,
+                    server_ticket = "16130413370e95b519e791f3f09b4f0ec80c818cdc",
+                    server_load = 0,
+                    db_load = 0,
+                });
+                array = ms.ToArray();
+            }
+            var packStream = new PackStream(15 + array.Length);
+
+            packStream.WriteUint16((uint)(9 + array.Length));
+            packStream.WriteUint8(0);
+            packStream.WriteUint16(10023);
+            packStream.WriteUint16(0);
+            packStream.WriteUint8(8);
+            packStream.WriteUint8(0);
+            packStream.WriteUint8(16);
+            packStream.WriteUint8(0);
+            packStream.WriteBuffer(array);
+
+            return packStream.ToArray();
+        }
+
+        private byte[] Am_10023()
+        {
+
             MemoryStream memoryStream = new MemoryStream();
             Serializer.Serialize(memoryStream, new sc_10023
             {
-                result = 0,//0은 튜토리얼 보내기.
-                user_id = 0,
+                result = 1,//0은 튜토리얼 보내기.
+                user_id = 643028,
                 server_ticket = "16130413370e95b519e791f3f09b4f0ec80c818cdc",
-                server_load = 0,
-                db_load = 0,
+                server_load = 1,
+                db_load = 1,
             });
             byte[] array = memoryStream.ToArray();
             PackStream packStream = new PackStream(15 + array.Length);

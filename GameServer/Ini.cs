@@ -159,7 +159,7 @@ public struct IniValue
         }
     }
 
-    public override string ToString()
+    public override string ToInt()
     {
         return Value;
     }

@@ -4,6 +4,7 @@ using System.IO;
 using PacketStream;
 using System.Net.Sockets;
 using System.Collections.Generic;
+using System;
 
 namespace Scripts
 {
@@ -16,29 +17,36 @@ namespace Scripts
 
         private static byte[] _GetHashCode()
         {
-            MemoryStream memoryStream = new MemoryStream();
+            IniFile ini = new IniFile();
+            ini.Load(Directory.GetCurrentDirectory() + "\\config\\gatewaysvr.ini");
+
             List<string> m_version = new List<string>
             {
-                "$azhash$5$1$66$d1450368de02b1b0",
-                "$cvhash$201$6e5e160d6b363d8d",
+                ini["Hash"]["azhash"].ToInt(),
+                ini["Hash"]["cvhash"].ToInt(),
                 "",
                 "",
-                "$l2dhash$203$bc6f7014e2e49ad6",
-                "$pichash$8$8281b91e4240ad7f",
-                "$bgmhash$8$8281b91e4240ad7f"
+                ini["Hash"]["l2dhash"].ToInt(),
+                ini["Hash"]["pichash"].ToInt(),
+                ini["Hash"]["bgmhash"].ToInt()
             };
-            Serializer.Serialize(memoryStream, new sc_10801
+
+            byte[] array;
+            using(var ms = new MemoryStream())
             {
-                gateway_ip = "bl-kr-test.kro.kr",
-                gateway_port = 80,
-                url = "https://play.google.com/store/apps/details?id=kr.txwy.and.blhx",
-                version = m_version,
-                proxy_ip = "",
-                proxy_port = 0,
-                is_ts = 0
-            });
-            byte[] array = memoryStream.ToArray();
-            memoryStream.Close();
+                Serializer.Serialize(ms, new sc_10801
+                {
+                    gateway_ip = ini["GateWay"]["ip"].ToString(),
+                    gateway_port = Convert.ToUInt16(ini["GateWay"]["port"].ToInt()),
+                    url = ini["GateWay"]["url"].ToInt(),
+                    version = m_version,
+                    proxy_ip = ini["GateWay"]["proxy_ip"].ToString(),
+                    proxy_port = Convert.ToUInt16(ini["GateWay"]["proxy_port"].ToInt()),
+                    is_ts = Convert.ToUInt16(ini["GateWay"]["is_ts"].ToInt())
+                });
+                array = ms.ToArray();
+            }
+
             PackStream packStream = new PackStream(15 + array.Length);
             packStream.WriteUint16((uint)(9 + array.Length));
             packStream.WriteUint8(0);
