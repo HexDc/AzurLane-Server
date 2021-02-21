@@ -71,12 +71,12 @@ public struct IniValue
             return false;
         }
         string boolStr = Value.Trim().ToLowerInvariant();
-        if (boolStr == "true")
+        if (boolStr == "true" || boolStr == "1")
         {
             result = true;
             return true;
         }
-        else if (boolStr == "false")
+        else if (boolStr == "false" || boolStr == "0")
         {
             result = false;
             return true;
@@ -159,7 +159,7 @@ public struct IniValue
         }
     }
 
-    public override string ToInt()
+    public override string ToString()
     {
         return Value;
     }

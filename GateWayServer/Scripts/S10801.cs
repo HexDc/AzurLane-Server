@@ -22,13 +22,13 @@ namespace Scripts
 
             List<string> m_version = new List<string>
             {
-                ini["Hash"]["azhash"].ToInt(),
-                ini["Hash"]["cvhash"].ToInt(),
+                ini["Hash"]["azhash"].ToString(),
+                ini["Hash"]["cvhash"].ToString(),
                 "",
                 "",
-                ini["Hash"]["l2dhash"].ToInt(),
-                ini["Hash"]["pichash"].ToInt(),
-                ini["Hash"]["bgmhash"].ToInt()
+                ini["Hash"]["l2dhash"].ToString(),
+                ini["Hash"]["pichash"].ToString(),
+                ini["Hash"]["bgmhash"].ToString()
             };
 
             byte[] array;
@@ -38,7 +38,7 @@ namespace Scripts
                 {
                     gateway_ip = ini["GateWay"]["ip"].ToString(),
                     gateway_port = Convert.ToUInt16(ini["GateWay"]["port"].ToInt()),
-                    url = ini["GateWay"]["url"].ToInt(),
+                    url = ini["GateWay"]["url"].ToString(),
                     version = m_version,
                     proxy_ip = ini["GateWay"]["proxy_ip"].ToString(),
                     proxy_port = Convert.ToUInt16(ini["GateWay"]["proxy_port"].ToInt()),

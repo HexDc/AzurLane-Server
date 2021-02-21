@@ -39,33 +39,33 @@ namespace Scripts
             server_cnt = ini["Default"]["server_cnt"].ToInt();
             for (int i = 1; i <= server_cnt; i++)
             {
-                m_ip.Add(ini[string.Format("Server_{0}", i)]["ip"].ToInt());
+                m_ip.Add(ini[string.Format("Server_{0}", i)]["ip"].ToString());
                 m_state.Add(ini[string.Format("Server_{0}", i)]["state"].ToInt());
                 m_port.Add(ini[string.Format("Server_{0}", i)]["port"].ToInt());
-                m_name.Add(ini[string.Format("Server_{0}", i)]["name"].ToInt());
+                m_name.Add(ini[string.Format("Server_{0}", i)]["name"].ToString());
                 m_tag_state.Add(ini[string.Format("Server_{0}", i)]["tag_state"].ToInt());
                 m_sort.Add(ini[string.Format("Server_{0}", i)]["sort"].ToInt());
-                m_proxy_ip.Add(ini[string.Format("Server_{0}", i)]["proxy_ip"].ToInt());
+                m_proxy_ip.Add(ini[string.Format("Server_{0}", i)]["proxy_ip"].ToString());
                 m_proxy_port.Add(ini[string.Format("Server_{0}", i)]["proxy_port"].ToInt());
             }
             ini.Clear();
 
             ini.Load(Directory.GetCurrentDirectory() + "\\config\\notice.ini");
             is_on = ini["Default"]["On"].ToInt() == 1 ? true : false;
-            m_title = ini["Default"]["title"].ToInt();
-            if (ini["Default"]["content_1"].ToInt().Length > 1)
+            m_title = ini["Default"]["title"].ToString();
+            if (ini["Default"]["content_1"].ToString().Length > 1)
             {
                 m_content += ini["Default"]["content_1"].ToInt();
             }
-            if (ini["Default"]["content_2"].ToInt().Length > 1)
+            if (ini["Default"]["content_2"].ToString().Length > 1)
             {
                 m_content += "\n" + ini["Default"]["content_2"].ToInt();
             }
-            if (ini["Default"]["content_3"].ToInt().Length > 1)
+            if (ini["Default"]["content_3"].ToString().Length > 1)
             {
                 m_content += "\n" + ini["Default"]["content_3"].ToInt();
             }
-            if (ini["Default"]["content_4"].ToInt().Length > 1)
+            if (ini["Default"]["content_4"].ToString().Length > 1)
             {
                 m_content += "\n" + ini["Default"]["content_4"].ToInt();
             }

@@ -215,7 +215,7 @@ namespace JsonFx.Json
             return string.IsNullOrEmpty(identifier) && string.IsNullOrEmpty(scriptIdentifier.identifier) || StringComparer.Ordinal.Equals(identifier, scriptIdentifier.identifier);
         }
 
-        public override string ToInt()
+        public override string ToString()
         {
             return identifier;
         }
