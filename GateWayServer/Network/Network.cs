@@ -32,7 +32,7 @@ namespace SNetwork
         {
             util = new Util();
             ListenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            EndPoint = new IPEndPoint(IPAddress.Any, port);
+            EndPoint = new IPEndPoint(IPAddress.Any, 16000);
             util.ColorMsg(ConsoleColor.White, ConsoleColor.Black, $"Network Working on {port}");
             UserList = new List<string>();
         }
@@ -53,7 +53,7 @@ namespace SNetwork
             {
                 ClientSocket = ListenSocket.Accept();
 
-                util.ColorMsg(ConsoleColor.DarkBlue, ConsoleColor.White, "Client Connect: {0}\r\n", ClientSocket.RemoteEndPoint.ToString());
+                util.ColorMsg(ConsoleColor.DarkBlue, ConsoleColor.White, "Client Connect: {0}\r\n", ClientSocket.RemoteEndPoint.ToString().Trim());
                 UserList.Add(ClientSocket.RemoteEndPoint.ToString());
 
                 ClientSocket.Receive(m_bBuffer);
@@ -62,21 +62,15 @@ namespace SNetwork
                 int idx = m_bBuffer[start + 5] << 8 | m_bBuffer[start + 6];
                 string result = $"command: {command} | idx: {idx}\n";
                 byte[] m_bResized;
-
-
                 switch (command)
                 {
-                    case PK_HASH_CODE:
-                        m_bResized = PacketHeaderRemove(PacketResize(m_bBuffer));
+                    case 11001:
                         util.ColorMsg(ConsoleColor.DarkMagenta, ConsoleColor.White, "idx: {0}", command);
-                        using (MemoryStream ms = new MemoryStream(m_bResized))
-                        {
-                            cs_10800 _10800 = Serializer.Deserialize<cs_10800>(ms);
-                            Console.WriteLine("{");
-                            Console.WriteLine($"    state: {_10800.state}");
-                            Console.WriteLine($"    platform: {_10800.platform}");
-                            Console.WriteLine("}");
-                        }
+                        Console.WriteLine("!1111111111111111111");
+                        break;
+                    case PK_HASH_CODE:
+                        util.ColorMsg(ConsoleColor.DarkMagenta, ConsoleColor.White, "idx: {0}", command);
+                        //util.ColorMsg(ConsoleColor.DarkMagenta, ConsoleColor.White, util.PrintBytes(m_bBuffer));
                         S10801.OnHash(ClientSocket);
                         break;
                     case WEB_CMD_LOAD_SERVER:
@@ -118,12 +112,13 @@ namespace SNetwork
                         new S10023().OnTutorial(ClientSocket);
                         break;
                     default:
+                        SCMD.OnWeb(ClientSocket, m_bBuffer);
                         util.ColorMsg(ConsoleColor.DarkYellow, ConsoleColor.White, "idx: {0}", command);
                         util.ColorMsg(ConsoleColor.DarkMagenta, ConsoleColor.White, result);
-                        util.ColorMsg(ConsoleColor.White, ConsoleColor.Black, Encoding.UTF8.GetString(m_bBuffer));
+                        util.ColorMsg(ConsoleColor.White, ConsoleColor.Black, util.PrintBytes(m_bBuffer));
                         break;
                 }
-                ClientSocket.Close();
+                //ClientSocket.Close();
             }
         }
     }

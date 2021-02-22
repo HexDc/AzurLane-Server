@@ -10,8 +10,7 @@ namespace Scripts
     {
         public void OnTutorial(Socket ClientSocket)
         {
-            byte[] data = m_10023();
-            ClientSocket.Send(data, 0, data.Length, SocketFlags.None);
+            ClientSocket.Send(m_10023(), 0, m_10023().Length, SocketFlags.None);
         }
 
         private byte[] m_10023()
@@ -23,11 +22,11 @@ namespace Scripts
                 {
                     result = 0,//0은 튜토리얼 보내기.
                     user_id = 643028,
-                    server_ticket = "16130413370e95b519e791f3f09b4f0ec80c818cdc",
+                    server_ticket = "16139726267bcf1408c971a28c50e96d290953499d",
                     server_load = 0,
                     db_load = 0,
                 });
-                array = ms.ToArray();
+            array = ms.ToArray();
             }
             var packStream = new PackStream(15 + array.Length);
 

@@ -16,6 +16,8 @@ namespace Scripts
             {
                 return @"HTTP/1.1 200 OK
 Content-Type: text/plain;charset=utf-8
+Access-Control-Allow-Origin: 
+Content-Length: 216
 
 " + Load_Server();
             }
@@ -29,7 +31,7 @@ Content-Type: text/plain;charset=utf-8
             Dictionary<string, object> dic_1 = new Dictionary<string, object>
             {
                 { "id", 1 },
-                { "name", "SERVER#1" },
+                { "name", "명량" },
                 { "state", 0 },
                 { "flag", 1 },
                 { "sort", 1 }
@@ -62,7 +64,10 @@ Content-Type: text/plain;charset=utf-8
             };
             ArrayList arr = new ArrayList
             {
-                dic_1
+                dic_1,
+                dic_2,
+                dic_3,
+                dic_4
             };
             string data = JsonFx.Json.JsonWriter.Serialize(arr);
             return data;

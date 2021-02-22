@@ -55,19 +55,19 @@ namespace Scripts
             m_title = ini["Default"]["title"].ToString();
             if (ini["Default"]["content_1"].ToString().Length > 1)
             {
-                m_content += ini["Default"]["content_1"].ToInt();
+                m_content += ini["Default"]["content_1"].ToString();
             }
             if (ini["Default"]["content_2"].ToString().Length > 1)
             {
-                m_content += "\n" + ini["Default"]["content_2"].ToInt();
+                m_content += "\n" + ini["Default"]["content_2"].ToString();
             }
             if (ini["Default"]["content_3"].ToString().Length > 1)
             {
-                m_content += "\n" + ini["Default"]["content_3"].ToInt();
+                m_content += "\n" + ini["Default"]["content_3"].ToString();
             }
             if (ini["Default"]["content_4"].ToString().Length > 1)
             {
-                m_content += "\n" + ini["Default"]["content_4"].ToInt();
+                m_content += "\n" + ini["Default"]["content_4"].ToString();
             }
         }
         private byte[] Ma_10021()////////////Tutorial Packet!!!!!!!
@@ -105,7 +105,7 @@ namespace Scripts
                     result = 0,
                     serverlist = m_Serverlist,
                     account_id = 643028,
-                    server_ticket = "16130413370e95b519e791f3f09b4f0ec80c818cdc",
+                    server_ticket = "16139726267bcf1408c971a28c50e96d290953499d",
                     device = 11
                 });
             }
@@ -116,7 +116,7 @@ namespace Scripts
                     result = 0,
                     serverlist = m_Serverlist,
                     account_id = 643028,
-                    server_ticket = "16130413370e95b519e791f3f09b4f0ec80c818cdc",
+                    server_ticket = "16139726267bcf1408c971a28c50e96d290953499d",
                     device = 11,
                     notice_list = m_Notice
                 });
