@@ -1,5 +1,4 @@
 ﻿using System;
-using GateWayServer.Network;
 using Service;
 
 namespace GateWayServer
@@ -7,13 +6,7 @@ namespace GateWayServer
     class Program
     {
         static ServiceAZ SAZ;
-
         static void Main(string[] args)
-        {
-            new Class1().Start();
-        }
-
-        static void _Main(string[] args)
         {
             Console.Title = "GateWayServer";
             if (args.Length < 1)

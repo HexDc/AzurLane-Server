@@ -73,10 +73,10 @@ Content-Length: 216
             return data;
         }//Just Dummy.. Client never Check
 
-        public static void OnWeb(Socket ClientSocket, byte[] m_bBuffer)
+        public static void OnWeb(NetworkStream NS, byte[] m_bBuffer)
         {
             byte[] buff = Encoding.UTF8.GetBytes(GetCmd(m_bBuffer));
-            ClientSocket.Send(buff, 0, buff.Length, SocketFlags.None);
+            NS.Write(buff, 0, buff.Length);
             return;
         }
     }

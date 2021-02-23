@@ -27,9 +27,9 @@ namespace Scripts
             LoadInfo();
         }
 
-        public void OnLogin(Socket ClientSocket)
+        public void OnLogin(NetworkStream NS)
         {
-            ClientSocket.Send(Ma_10021(), 0, Ma_10021().Length, SocketFlags.None);
+            NS.Write(Ma_10021(), 0, Ma_10021().Length);
         }
 
         private void LoadInfo()//가변형

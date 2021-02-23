@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commander", "Commander\Comm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtoMaker", "ProtoMaker\ProtoMaker.csproj", "{97A5AC6D-D0B7-4C91-B3D8-BA43361CD085}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacketDecrypter", "PacketDecrypter\PacketDecrypter.csproj", "{35BEBC20-F0B9-44FF-9B36-8EB38ED4B752}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PacketDecrypter", "PacketDecrypter\PacketDecrypter.csproj", "{35BEBC20-F0B9-44FF-9B36-8EB38ED4B752}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

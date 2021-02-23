@@ -8,9 +8,9 @@ namespace Scripts
 {
     public class S10023
     {
-        public void OnTutorial(Socket ClientSocket)
+        public void OnTutorial(NetworkStream NS)
         {
-            ClientSocket.Send(m_10023(), 0, m_10023().Length, SocketFlags.None);
+            NS.Write(m_10023(), 0, m_10023().Length);
         }
 
         private byte[] m_10023()

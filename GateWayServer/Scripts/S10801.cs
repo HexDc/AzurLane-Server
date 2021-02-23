@@ -10,9 +10,9 @@ namespace Scripts
 {
     public class S10801
     {
-        public static void OnHash(Socket ClientSocket)
+        public static void OnHash(NetworkStream NS)
         {
-            ClientSocket.Send(_GetHashCode(), 0, _GetHashCode().Length, SocketFlags.None);
+            NS.Write(_GetHashCode(), 0, _GetHashCode().Length);
         }
 
         private static byte[] _GetHashCode()
