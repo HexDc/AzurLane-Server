@@ -1,7 +1,8 @@
 ﻿using System;
 using Command;
-using SNetwork;
+using GNetwork;
 using System.Data.SqlClient;
+using System.ServiceModel;
 
 namespace Manager
 {
@@ -16,7 +17,7 @@ namespace Manager
             if (!CmdNetwork()) return false;
             return true;
         }
-
+        
         private bool CmdNetwork()
         {
             if (m_cmdUse)
