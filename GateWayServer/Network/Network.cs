@@ -1,22 +1,22 @@
-﻿using Tool;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using System.Net.Sockets;
-using System.Collections.Generic;
+using Tool;
+using Scripts;
 
 namespace GNetwork
 {
     public class Network
     {
-        Util util;
-        TcpListener TL;
-        TcpClient TC;
-        Dictionary<TcpClient, string> Clients;
-        int count;
-        private int _port;
-        const string Http = "HTTP/1.1 200 OK\nContent-Type: text/plain;charset=utf-8\nAccess-Control-Allow-Origin:\n\n";
+        private readonly Util util;
+        private TcpListener TL;
+        private TcpClient TC;
+        private readonly Dictionary<TcpClient, string> Clients;
+        private readonly int _port;
+        private const string Http = "HTTP/1.1 200 OK\nContent-Type: text/plain;charset=utf-8\nAccess-Control-Allow-Origin:\n\n";
         public Network(int port = 80)
         {
             util = new Util();
@@ -41,9 +41,8 @@ namespace GNetwork
             {
                 try
                 {
-                    ++count;
                     TC = TL.AcceptTcpClient();
-                    Console.WriteLine(count.ToString() + TC.Client.RemoteEndPoint.ToString());
+                    Console.WriteLine(Clients.Count + 1 + " . " + TC.Client.RemoteEndPoint.ToString());
                     Clients.Add(TC, TC.Client.RemoteEndPoint.ToString());
                     Client client = new Client();
                     client.OnReceived += new Client.Received(OnReceived);
@@ -62,18 +61,19 @@ namespace GNetwork
         {
             lock (client)
             {
-                --count;
-                string ip;
-                if (Clients.TryGetValue(client, out ip))
-                    Console.WriteLine("Disconnected" + ip);
-
+                if (Clients.TryGetValue(client, out string ip))
+                {
+                    Console.WriteLine("Disconnected . " + ip);
+                }
                 if (Clients.ContainsKey(client))
+                {
                     Clients.Remove(client);
+                }
                 try
                 {
                     client.Close();
                 }
-                catch { }
+                catch(Exception) { }
             }
         }
 
@@ -85,49 +85,71 @@ namespace GNetwork
             switch (command)
             {
                 case 8239:
-                    Send(client, "Hello World웱");
+                    Send(client, SCMD.OnWeb(data));
                     break;
-
+                case 10800:
+                    Send(client, S10801.OnHash());
+                    break;
+                case 10020:
+                    new S10021().OnLogin();
+                    break;
+                case 10022:
+                    new S10023().OnTutorial();
+                    break;
+                default:
+                    util.ColorMsg(ConsoleColor.White, ConsoleColor.Black, result);
+                    util.ColorMsg(ConsoleColor.White, ConsoleColor.Black, "Unknown Packet:");
+                    util.ColorMsg(ConsoleColor.White, ConsoleColor.Black, util.PrintBytes(data));
+                    break;
             }
-            Console.WriteLine(Encoding.Default.GetString(data));
         }
-
+        
         private void Send(TcpClient Client, byte[] data)
         {
-            NetworkStream stream = Client.GetStream();
+            using NetworkStream stream = Client.GetStream();
             stream.Write(data, 0, data.Length);
         }
 
         private void Send(TcpClient Client, string msg, bool isWeb = true)
         {
-            NetworkStream stream = Client.GetStream();
-            if (isWeb)
+            lock (Client)
             {
-                msg = Http + msg;
+                using NetworkStream stream = Client.GetStream();
+                if (isWeb)
+                {
+                    msg = Http + msg;
+                }
+                byte[] data = Encoding.UTF8.GetBytes(msg);
+                stream.Write(data, 0, data.Length);
+                if (isWeb)
+                {
+                    OnDisconnected(Client);
+                    Client.Close();
+                }
             }
-            stream.Write(Encoding.Default.GetBytes(msg), 0, Encoding.Default.GetByteCount(msg));
-            Client.Close();
         }
 
         private void SendToAll(byte[] data)
         {
-            foreach (var pair in Clients)
+            foreach (KeyValuePair<TcpClient, string> pair in Clients)
             {
                 TcpClient client = pair.Key;
-                try
                 {
-                    if (client.Connected && (client != null))
+                    try
                     {
-                        NetworkStream stream = client.GetStream();
-                        stream.Write(data, 0, data.Length);
+                        if (client.Connected && (client != null))
+                        {
+                            using NetworkStream stream = client.GetStream();
+                            stream.Write(data, 0, data.Length);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
                     }
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
             }
-        }
 
+        }
     }
 }

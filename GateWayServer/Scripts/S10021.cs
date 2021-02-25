@@ -3,7 +3,6 @@ using PacketStream;
 using ProtoBuf;
 using System.Collections.Generic;
 using System.IO;
-using System.Net.Sockets;
 
 namespace Scripts
 {
@@ -27,9 +26,9 @@ namespace Scripts
             LoadInfo();
         }
 
-        public void OnLogin(NetworkStream NS)
+        public byte[] OnLogin()
         {
-            NS.Write(Ma_10021(), 0, Ma_10021().Length);
+            return Ma_10021();
         }
 
         private void LoadInfo()//가변형

@@ -67,7 +67,7 @@ namespace SNetworkS
                         case PK_HASH_CODE:
                             util.ColorMsg(ConsoleColor.DarkMagenta, ConsoleColor.White, "idx: {0}", command);
                             //util.ColorMsg(ConsoleColor.DarkMagenta, ConsoleColor.White, util.PrintBytes(m_bBuffer));
-                            S10801.OnHash(NS);
+                            //S10801.OnHash(NS);
                             break;
                         case WEB_CMD_LOAD_SERVER:
                             break;
@@ -87,7 +87,7 @@ namespace SNetworkS
                                 Console.WriteLine($"    device: {_10020.device}");
                                 Console.WriteLine("}");
                             }
-                            new S10021().OnLogin(NS);
+                            //new S10021().OnLogin(NS);
                             break;
                         case PK_10022:
                             m_bResized = PacketHeaderRemove(PacketResize(m_bBuffer));
@@ -104,10 +104,10 @@ namespace SNetworkS
                                 Console.WriteLine($"    device_id: {_10022.device_id}");
                                 Console.WriteLine("}");
                             }
-                            new S10023().OnTutorial(NS);
+                            //new S10023().OnTutorial(NS);
                             break;
                         default:
-                            SCMD.OnWeb(NS, m_bBuffer);
+                            //SCMD.OnWeb(NS, m_bBuffer);
                             util.ColorMsg(ConsoleColor.DarkYellow, ConsoleColor.White, "idx: {0}", command);
                             util.ColorMsg(ConsoleColor.DarkMagenta, ConsoleColor.White, result);
                             util.ColorMsg(ConsoleColor.White, ConsoleColor.Black, util.PrintBytes(m_bBuffer));
@@ -115,7 +115,7 @@ namespace SNetworkS
                     }
                     if (command == 8239)
                     {
-                        SCMD.OnWeb(NS, m_bBuffer);
+                        //SCMD.OnWeb(NS, m_bBuffer);
                         TC.Close();
                         break;
                     }

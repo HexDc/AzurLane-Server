@@ -1,18 +1,17 @@
 ﻿using p10;
-using ProtoBuf;
-using System.IO;
 using PacketStream;
-using System.Net.Sockets;
-using System.Collections.Generic;
+using ProtoBuf;
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Scripts
 {
     public class S10801
     {
-        public static void OnHash(NetworkStream NS)
+        public static byte[] OnHash()
         {
-            NS.Write(_GetHashCode(), 0, _GetHashCode().Length);
+            return _GetHashCode();
         }
 
         private static byte[] _GetHashCode()

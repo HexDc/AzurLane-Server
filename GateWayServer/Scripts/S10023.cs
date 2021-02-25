@@ -8,9 +8,9 @@ namespace Scripts
 {
     public class S10023
     {
-        public void OnTutorial(NetworkStream NS)
+        public byte[] OnTutorial()
         {
-            NS.Write(m_10023(), 0, m_10023().Length);
+            return m_10023();
         }
 
         private byte[] m_10023()
