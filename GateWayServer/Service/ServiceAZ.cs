@@ -47,7 +47,6 @@ namespace Service
                     break;
                 case 3:
                     m_iniFile = m_arguments[1];
-                    m_logFile = m_arguments[1];
                     break;
                 default:
                     return false;
@@ -70,11 +69,6 @@ namespace Service
             }
         }
 
-        public void Destroy()
-        {
-
-        }
-
         public void Debug(string msg)
         {
             Console.Write(msg);
@@ -86,6 +80,5 @@ namespace Service
         string[] m_arguments;
 
         string m_iniFile;
-        string m_logFile;
     }
 }

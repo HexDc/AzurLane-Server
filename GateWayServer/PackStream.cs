@@ -1,10 +1,14 @@
-﻿using System;
+﻿using GateWayServer;
+using System;
 using System.Text;
+using Tool;
 
 namespace PacketStream
 {
     public class PackStream //copied from original code
     {
+        ExceptionManager EM = TSingleton<ExceptionManager>.Instance;
+        Util util = new Util();
         public PackStream()
         {
             pktBuffer = new byte[8192];
@@ -23,7 +27,7 @@ namespace PacketStream
         {
             if (pktBuffer == null || pktBuffer.Length == 0)
             {
-                throw new Exception("buf 不能为 null。");
+                EM.Exception("buf null" + util.PrintBytes(pktBuffer));
             }
 
             Length = 0;
@@ -139,7 +143,7 @@ namespace PacketStream
         {
             if (x > 127 || x < -128)
             {
-                throw new Exception(string.Format("Int8的有限范围为[{0:d},{1:d}]。", -127, 128));
+                EM.Exception("Int8 OverFlow:: -127, 128 :: [{0}]" + x);
             }
 
             Write((byte)x);
@@ -149,7 +153,7 @@ namespace PacketStream
         {
             if (x > 255u)
             {
-                throw new Exception(string.Format("Uint8的有限范围为[{0:d},{1:d}]。", 0, 255));
+                EM.Exception("UInt8 OverFlow:: 0, 255 :: [{0}]" + x);
             }
 
             Write((byte)x);
@@ -159,7 +163,7 @@ namespace PacketStream
         {
             if (x > 32767 || x < -32768)
             {
-                throw new Exception(string.Format("int16的有限范围为[{0:d},{1:d}]。", -32768, 32767));
+                EM.Exception("Int16 OverFlow:: -32768, 32767 :: [{0}]" + x);
             }
 
             Write((short)x);
@@ -169,7 +173,7 @@ namespace PacketStream
         {
             if (x > 65535u)
             {
-                throw new Exception(string.Format("Uint16的有限范围为[{0:d},{1:d}]。", 0, 65535L));
+                EM.Exception("UInt16 OverFlow:: 0, 655357 :: [{0}]" + x);
             }
 
             Write((short)x);
@@ -318,7 +322,7 @@ namespace PacketStream
 
             if (bs.Length > 65535)
             {
-                throw new Exception("发送字符串失败（字符串长度超过255个字节）。");
+                EM.Exception("Failed to send char set(Char Length overed 255 byte :: [{0}]" + util.PrintBytes(bs));
             }
 
             WriteUint16((uint)bs.Length);
@@ -375,7 +379,6 @@ namespace PacketStream
             Length = 0;
         }
 
-        // Token: 0x06004231 RID: 16945 RVA: 0x0001DA63 File Offset: 0x0001BC63
         public static int ComputeUint32Size(uint value)
         {
             if ((value & 4294967168u) == 0u)

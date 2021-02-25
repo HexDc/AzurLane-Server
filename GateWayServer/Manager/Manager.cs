@@ -46,8 +46,8 @@ namespace Manager
 
         private bool ListenNetwork()
         {
-            Network network = new Network(m_port);
-            if (network.Start())
+            Network network = new Network();
+            if (network.Start(m_port))
             {
                 Information("Listening TCP ..");
 

@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
+using System.Linq;
+using System.Collections.Generic;
 
 public struct IniValue
 {
@@ -67,7 +67,7 @@ public struct IniValue
     {
         if (Value == null)
         {
-            result = default(bool);
+            result = default;
             return false;
         }
         string boolStr = Value.Trim().ToLowerInvariant();
@@ -81,7 +81,7 @@ public struct IniValue
             result = false;
             return true;
         }
-        result = default(bool);
+        result = default;
         return false;
     }
 

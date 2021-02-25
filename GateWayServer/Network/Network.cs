@@ -6,34 +6,30 @@ using System.Text;
 using System.Threading;
 using Tool;
 using Scripts;
+using GateWayServer;
 
 namespace GNetwork
 {
-    public class Network
+    public class Network : TSingleton<Network>
     {
-        private readonly Util util;
+        private readonly Util util = new Util();
         private TcpListener TL;
         private TcpClient TC;
-        private readonly Dictionary<TcpClient, string> Clients;
-        private readonly int _port;
+        private readonly Dictionary<TcpClient, string> Clients = new Dictionary<TcpClient, string>();
+        private int port;
         private const string Http = "HTTP/1.1 200 OK\nContent-Type: text/plain;charset=utf-8\nAccess-Control-Allow-Origin:\n\n";
-        public Network(int port = 80)
-        {
-            util = new Util();
-            Clients = new Dictionary<TcpClient, string>();
-            _port = port;
-        }
 
-        public bool Start()
+        public bool Start(int _port)
         {
-            Console.WriteLine($"Network working on {_port}");
+            port = _port;
+            Console.WriteLine($"Network working on {port}");
             new Thread(new ThreadStart(ServiceStart)).Start();
             return true;
         }
 
         private void ServiceStart()
         {
-            TL = new TcpListener(IPAddress.Any, _port);
+            TL = new TcpListener(IPAddress.Any, port);
             TL.Start();
             byte[] m_bData = new byte[1024];
 
@@ -73,7 +69,7 @@ namespace GNetwork
                 {
                     client.Close();
                 }
-                catch(Exception) { }
+                catch (Exception) { }
             }
         }
 
@@ -91,10 +87,10 @@ namespace GNetwork
                     Send(client, S10801.OnHash());
                     break;
                 case 10020:
-                    new S10021().OnLogin();
+                    Send(client, new S10021().OnLogin());
                     break;
                 case 10022:
-                    new S10023().OnTutorial();
+                    Send(client, new S10023().OnTutorial());
                     break;
                 default:
                     util.ColorMsg(ConsoleColor.White, ConsoleColor.Black, result);
@@ -103,7 +99,7 @@ namespace GNetwork
                     break;
             }
         }
-        
+
         private void Send(TcpClient Client, byte[] data)
         {
             using NetworkStream stream = Client.GetStream();
@@ -127,6 +123,19 @@ namespace GNetwork
                     Client.Close();
                 }
             }
+        }
+        public int GetUserCount()
+        {
+            return Clients.Count;
+        }
+        public List<string> GetUserIPList()
+        {
+            List<string> p = new List<string>();
+            foreach(string item in Clients.Values)
+            {
+                p.Add(item);
+            }
+            return p;
         }
 
         private void SendToAll(byte[] data)
