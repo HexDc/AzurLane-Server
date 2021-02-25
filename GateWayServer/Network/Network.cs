@@ -78,19 +78,20 @@ namespace GNetwork
             int command = data[3] << 8 | data[4];
             int idx = data[5] << 8 | data[6];
             string result = $"command: {command} | idx: {idx}\n";
+            util.ColorMsg(ConsoleColor.White, ConsoleColor.Black, result);
             switch (command)
             {
                 case 8239:
-                    Send(client, SCMD.OnWeb(data));
+                    Send(client, SCMD.OnWeb(data), true);
                     break;
                 case 10800:
-                    Send(client, S10801.OnHash());
+                    Send(client, S10801.OnHash(), true);
                     break;
                 case 10020:
-                    Send(client, new S10021().OnLogin());
+                    Send(client, new S10021().OnLogin(), true);
                     break;
                 case 10022:
-                    Send(client, new S10023().OnTutorial());
+                    Send(client, new S10023().OnTutorial(), true);
                     break;
                 default:
                     util.ColorMsg(ConsoleColor.White, ConsoleColor.Black, result);
@@ -100,10 +101,17 @@ namespace GNetwork
             }
         }
 
-        private void Send(TcpClient Client, byte[] data)
+        private void Send(TcpClient Client, byte[] data, bool isNeedDisconn)
         {
-            using NetworkStream stream = Client.GetStream();
-            stream.Write(data, 0, data.Length);
+            lock (Client)
+            {
+                using NetworkStream stream = Client.GetStream();
+                stream.Write(data, 0, data.Length);
+                if(isNeedDisconn)
+                {
+                    OnDisconnected(Client);
+                }
+            }
         }
 
         private void Send(TcpClient Client, string msg, bool isWeb = true)
@@ -120,14 +128,15 @@ namespace GNetwork
                 if (isWeb)
                 {
                     OnDisconnected(Client);
-                    Client.Close();
                 }
             }
         }
+
         public int GetUserCount()
         {
             return Clients.Count;
         }
+
         public List<string> GetUserIPList()
         {
             List<string> p = new List<string>();
@@ -155,6 +164,7 @@ namespace GNetwork
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
+                        OnDisconnected(client);
                     }
                 }
             }

@@ -2,7 +2,7 @@
 using Command;
 using GNetwork;
 using System.Data.SqlClient;
-using System.ServiceModel;
+using GateWayServer;
 
 namespace Manager
 {
@@ -22,7 +22,7 @@ namespace Manager
         {
             if (m_cmdUse)
             {
-                ProCommand cmd = new ProCommand(20000);
+                ProCommand cmd = new ProCommand(m_cmdPort);
                 if (!cmd.OnStart())
                 {
                     Information("Processing Command ..");
@@ -34,7 +34,6 @@ namespace Manager
                     Information("Processing Command ..");
                     Information("done\n");
                     return true;
-
                 }
             }
             else
@@ -46,16 +45,14 @@ namespace Manager
 
         private bool ListenNetwork()
         {
-            Network network = new Network();
+            Network network = TSingleton<Network>.Instance;
             if (network.Start(m_port))
             {
                 Information("Listening TCP ..");
-
                 Information("done\n");
                 return true;
             }
             Information("Listening TCP ..");
-
             Information("failed\n");
             return false;
         }
