@@ -7,6 +7,9 @@ using System.Threading;
 using Tool;
 using Scripts;
 using GateWayServer;
+using p10;
+using System.IO;
+using ProtoBuf;
 
 namespace GNetwork
 {
@@ -29,7 +32,7 @@ namespace GNetwork
 
         private void ServiceStart()
         {
-            TL = new TcpListener(IPAddress.Any, port);
+            TL = new TcpListener(IPAddress.Any, 14009);
             TL.Start();
             byte[] m_bData = new byte[1024];
 
@@ -85,13 +88,25 @@ namespace GNetwork
                     Send(client, SCMD.OnWeb(data), true);
                     break;
                 case 10800:
-                    Send(client, S10801.OnHash(), true);
+                    //Send(client, S10801.OnHash(), false);
+                    SendToAll(S10801.OnHash());
                     break;
                 case 10020:
-                    Send(client, new S10021().OnLogin(), true);
+                    //Send(client, new S10021().OnLogin(), false);
+                    SendToAll(new S10021().OnLogin());
                     break;
                 case 10022:
-                    Send(client, new S10023().OnTutorial(), true);
+                    MemoryStream ms = new MemoryStream(util.PacketHeaderRemove(util.PacketResize(data)));
+                    cs_10022 _10022 = Serializer.Deserialize<cs_10022>(ms);
+                    Console.WriteLine($"    account_id: {_10022.account_id}");
+                    Console.WriteLine($"    server_ticket: {_10022.server_ticket}");
+                    Console.WriteLine($"    platform: {_10022.platform}");
+                    Console.WriteLine($"    serverid: {_10022.serverid}");
+                    Console.WriteLine($"    check_key: {_10022.check_key}");
+                    Console.WriteLine($"    device_id: {_10022.device_id}");
+                    //Send(client, new S10023().OnTutorial(), false);
+                    SendToAll(new S10023().OnTutorial());
+                    //Send(client, S11000._11000(), true);
                     break;
                 default:
                     util.ColorMsg(ConsoleColor.White, ConsoleColor.Black, result);
@@ -101,7 +116,7 @@ namespace GNetwork
             }
         }
 
-        private void Send(TcpClient Client, byte[] data, bool isNeedDisconn)
+        private void Send(TcpClient Client, byte[] data, bool isNeedDisconn = false)
         {
             lock (Client)
             {

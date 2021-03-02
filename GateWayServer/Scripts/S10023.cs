@@ -21,12 +21,12 @@ namespace Scripts
                 Serializer.Serialize(ms, new sc_10023
                 {
                     result = 0,//0은 튜토리얼 보내기.
-                    user_id = 643028,
-                    server_ticket = "16139726267bcf1408c971a28c50e96d290953499d",
+                    user_id = 67751892,
+                    server_ticket = "16144400104a8afc841fb14e8dd3b1448782f03472",
                     server_load = 0,
                     db_load = 0,
                 });
-            array = ms.ToArray();
+                array = ms.ToArray();
             }
             var packStream = new PackStream(15 + array.Length);
 
@@ -40,34 +40,6 @@ namespace Scripts
             packStream.WriteUint8(0);
             packStream.WriteBuffer(array);
 
-            return packStream.ToArray();
-        }
-
-        private byte[] Am_10023()
-        {
-
-            MemoryStream memoryStream = new MemoryStream();
-            Serializer.Serialize(memoryStream, new sc_10023
-            {
-                result = 1,//0은 튜토리얼 보내기.
-                user_id = 643028,
-                server_ticket = "16130413370e95b519e791f3f09b4f0ec80c818cdc",
-                server_load = 1,
-                db_load = 1,
-            });
-            byte[] array = memoryStream.ToArray();
-            PackStream packStream = new PackStream(15 + array.Length);
-
-            memoryStream.Close();
-            packStream.WriteUint16((uint)(9 + array.Length));
-            packStream.WriteUint8(0);
-            packStream.WriteUint16(10023);
-            packStream.WriteUint16(0);
-            packStream.WriteUint8(8);
-            packStream.WriteUint8(0);
-            packStream.WriteUint8(16);
-            packStream.WriteUint8(0);
-            packStream.WriteBuffer(array);
             return packStream.ToArray();
         }
     }

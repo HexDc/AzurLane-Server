@@ -104,7 +104,7 @@ namespace Scripts
                     result = 0,
                     serverlist = m_Serverlist,
                     account_id = 643028,
-                    server_ticket = "16139726267bcf1408c971a28c50e96d290953499d",
+                    server_ticket = "16144395894052053e156363ef7d3bdd0ff3fcfdba",
                     device = 11
                 });
             }
@@ -115,7 +115,7 @@ namespace Scripts
                     result = 0,
                     serverlist = m_Serverlist,
                     account_id = 643028,
-                    server_ticket = "16139726267bcf1408c971a28c50e96d290953499d",
+                    server_ticket = "16144395894052053e156363ef7d3bdd0ff3fcfdba",
                     device = 11,
                     notice_list = m_Notice
                 });

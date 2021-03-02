@@ -36,7 +36,7 @@ namespace GNetwork
             while (true)
             {
                 ClientSocket = ListenSocket.Accept();
-
+                //0011002af8000108cacce9810610f0f9e9fd05
                 ColorMsg(ConsoleColor.DarkBlue, ConsoleColor.White, $"Client Connect:{ClientSocket.RemoteEndPoint}");
 
                 ClientSocket.Receive(m_bBuffer);

@@ -16,7 +16,12 @@ namespace PacketDecrypter
             try
             {
                 string text = Console.ReadLine();
-                byte[] m_bBuffer = text.Split(',').Select(x => Convert.ToByte(x)).ToArray();
+                byte[] m_bBuffer;
+                if (text.Contains(","))
+                    m_bBuffer = text.Split(',').Select(x => Convert.ToByte(x)).ToArray();
+                else
+                    m_bBuffer = HexToBytes(text);
+
                 int start = 0;
                 int command = m_bBuffer[start + 3] << 8 | m_bBuffer[start + 4];
                 int idx = m_bBuffer[start + 5] << 8 | m_bBuffer[start + 6];
@@ -122,6 +127,11 @@ namespace PacketDecrypter
                     exp=0
                 });
             }
+        }
+
+        static void Print(uint v)
+        {
+            Console.Write($"\r{v}\n");
         }
         static void Print(string format, params object[] args)
         {

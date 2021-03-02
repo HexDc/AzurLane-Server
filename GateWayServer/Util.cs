@@ -6,6 +6,27 @@ namespace Tool
 {
     public class Util
     {
+
+        public byte[] PacketResize(byte[] stream)
+        {
+            byte[] array = new byte[stream[1] + 2];
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = stream[i];
+            }
+            return array;
+        }
+
+        public byte[] PacketHeaderRemove(byte[] stream)
+        {
+            byte[] array = new byte[stream[1] - 5];
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = stream[i + 7];
+            }
+            return array;
+        }
+
         public byte[] StringToBytes(string str)
         {
             byte[] StrByte = Encoding.UTF8.GetBytes(str);

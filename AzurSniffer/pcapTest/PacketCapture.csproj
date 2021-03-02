@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1C221B5A-7A22-4479-B5AD-DC2820C8B7D2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>pcapTest</RootNamespace>
+    <AssemblyName>pcapTest</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>chr3-pet.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PacketDotNet, Version=0.16.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PacketDotNet.0.16.0\lib\PacketDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Base, Version=1.0.4.25027, Culture=neutral, PublicKeyToken=06a20bc2fabb1931, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pcap.Net.x86.1.0.4.1\lib\net45\PcapDotNet.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Core, Version=1.0.4.25067, Culture=neutral, PublicKeyToken=06a20bc2fabb1931, processorArchitecture=x86">
+      <HintPath>..\packages\Pcap.Net.x86.1.0.4.1\lib\net45\PcapDotNet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Core.Extensions, Version=1.0.4.25069, Culture=neutral, PublicKeyToken=06a20bc2fabb1931, processorArchitecture=x86">
+      <HintPath>..\packages\Pcap.Net.x86.1.0.4.1\lib\net45\PcapDotNet.Core.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Packets, Version=1.0.4.25028, Culture=neutral, PublicKeyToken=06a20bc2fabb1931, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pcap.Net.x86.1.0.4.1\lib\net45\PcapDotNet.Packets.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=3.0.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.3.0.73\lib\net461\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.Core.3.0.73\lib\net461\protobuf-net.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpPcap, Version=4.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpPcap.4.4.0\lib\SharpPcap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.7.1\lib\net461\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Decrypt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces.Designer.cs">
+      <DependentUpon>Interfaces.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="protocol\common\APPRECIATIONINFO.cs" />
+    <Compile Include="protocol\common\BUILDINFO.cs" />
+    <Compile Include="protocol\common\COLLECTIONINFO.cs" />
+    <Compile Include="protocol\common\COMMANDERSINFO.cs" />
+    <Compile Include="protocol\common\DISPLAYINFO.cs" />
+    <Compile Include="protocol\common\DROPINFO.cs" />
+    <Compile Include="protocol\common\EQUIPINFO.cs" />
+    <Compile Include="protocol\common\IDTIMEINFO.cs" />
+    <Compile Include="protocol\common\SHIPCOREINFO.cs" />
+    <Compile Include="protocol\common\SHIPINFO.cs" />
+    <Compile Include="protocol\common\SHIPMODELINFO.cs" />
+    <Compile Include="protocol\common\SHIPSKILL.cs" />
+    <Compile Include="protocol\common\SHIPSTATE.cs" />
+    <Compile Include="protocol\common\STRENGTH_INFO.cs" />
+    <Compile Include="protocol\common\TASKINFO.cs" />
+    <Compile Include="protocol\common\TRANSFORM_INFO.cs" />
+    <Compile Include="protocol\common\USERSIMPLEINFO.cs" />
+    <Compile Include="protocol\p10\Client\cs_10001.cs" />
+    <Compile Include="protocol\p10\Client\cs_10020.cs" />
+    <Compile Include="protocol\p10\Client\cs_10022.cs" />
+    <Compile Include="protocol\p10\Client\cs_10024.cs" />
+    <Compile Include="protocol\p10\Client\cs_10100.cs" />
+    <Compile Include="protocol\p10\Client\cs_10800.cs" />
+    <Compile Include="protocol\p10\Client\cs_10994.cs" />
+    <Compile Include="protocol\p10\Client\cs_10996.cs" />
+    <Compile Include="protocol\p10\NoticeInfo.cs" />
+    <Compile Include="protocol\p10\ServerInfo.cs" />
+    <Compile Include="protocol\p10\Server\sc_10002.cs" />
+    <Compile Include="protocol\p10\Server\sc_10021.cs" />
+    <Compile Include="protocol\p10\Server\sc_10023.cs" />
+    <Compile Include="protocol\p10\Server\sc_10025.cs" />
+    <Compile Include="protocol\p10\Server\sc_10101.cs" />
+    <Compile Include="protocol\p10\Server\sc_10801.cs" />
+    <Compile Include="protocol\p10\Server\sc_10995.cs" />
+    <Compile Include="protocol\p10\Server\sc_10997.cs" />
+    <Compile Include="protocol\p10\Server\sc_10998.cs" />
+    <Compile Include="protocol\p10\Server\sc_10999.cs" />
+    <Compile Include="protocol\p11\ACTIVITYINFO.cs" />
+    <Compile Include="protocol\p11\BENEFITBUFF.cs" />
+    <Compile Include="protocol\p11\CARDINFO.cs" />
+    <Compile Include="protocol\p11\Client\cs_11001.cs" />
+    <Compile Include="protocol\p11\Client\cs_11005.cs" />
+    <Compile Include="protocol\p11\Client\cs_11007.cs" />
+    <Compile Include="protocol\p11\Client\cs_11009.cs" />
+    <Compile Include="protocol\p11\Client\cs_11011.cs" />
+    <Compile Include="protocol\p11\Client\cs_11013.cs" />
+    <Compile Include="protocol\p11\Client\cs_11016.cs" />
+    <Compile Include="protocol\p11\Client\cs_11017.cs" />
+    <Compile Include="protocol\p11\Client\cs_11019.cs" />
+    <Compile Include="protocol\p11\Client\cs_11021.cs" />
+    <Compile Include="protocol\p11\Client\cs_11100.cs" />
+    <Compile Include="protocol\p11\Client\cs_11202.cs" />
+    <Compile Include="protocol\p11\Client\cs_11204.cs" />
+    <Compile Include="protocol\p11\Client\cs_11401.cs" />
+    <Compile Include="protocol\p11\Client\cs_11501.cs" />
+    <Compile Include="protocol\p11\Client\cs_11504.cs" />
+    <Compile Include="protocol\p11\Client\cs_11506.cs" />
+    <Compile Include="protocol\p11\Client\cs_11508.cs" />
+    <Compile Include="protocol\p11\Client\cs_11510.cs" />
+    <Compile Include="protocol\p11\Client\cs_11601.cs" />
+    <Compile Include="protocol\p11\Client\cs_11603.cs" />
+    <Compile Include="protocol\p11\Client\cs_11605.cs" />
+    <Compile Include="protocol\p11\Client\cs_11607.cs" />
+    <Compile Include="protocol\p11\Client\cs_11609.cs" />
+    <Compile Include="protocol\p11\Client\cs_11701.cs" />
+    <Compile Include="protocol\p11\Client\cs_11703.cs" />
+    <Compile Include="protocol\p11\COOLDOWN.cs" />
+    <Compile Include="protocol\p11\GROUPINFO.cs" />
+    <Compile Include="protocol\p11\INS_MESSAGE.cs" />
+    <Compile Include="protocol\p11\iNS_NPC.cs" />
+    <Compile Include="protocol\p11\INS_PLAYER.cs" />
+    <Compile Include="protocol\p11\KEYVALUE.cs" />
+    <Compile Include="protocol\p11\KEYVALUELIST.cs" />
+    <Compile Include="protocol\p11\NOTICEINFO.cs" />
+    <Compile Include="protocol\p11\RESOURCE.cs" />
+    <Compile Include="protocol\p11\RETURN_USER_INFO.cs" />
+    <Compile Include="protocol\p11\Server\sc_11000.cs" />
+    <Compile Include="protocol\p11\Server\sc_11002.cs" />
+    <Compile Include="protocol\p11\Server\sc_11003.cs" />
+    <Compile Include="protocol\p11\Server\sc_11004.cs" />
+    <Compile Include="protocol\p11\Server\sc_11006.cs" />
+    <Compile Include="protocol\p11\Server\sc_11008.cs" />
+    <Compile Include="protocol\p11\Server\sc_11010.cs" />
+    <Compile Include="protocol\p11\Server\sc_11012.cs" />
+    <Compile Include="protocol\p11\Server\sc_11014.cs" />
+    <Compile Include="protocol\p11\Server\sc_11015.cs" />
+    <Compile Include="protocol\p11\Server\sc_11018.cs" />
+    <Compile Include="protocol\p11\Server\sc_11020.cs" />
+    <Compile Include="protocol\p11\Server\sc_11022.cs" />
+    <Compile Include="protocol\p11\Server\sc_11101.cs" />
+    <Compile Include="protocol\p11\Server\sc_11200.cs" />
+    <Compile Include="protocol\p11\Server\sc_11201.cs" />
+    <Compile Include="protocol\p11\Server\sc_11203.cs" />
+    <Compile Include="protocol\p11\Server\sc_11205.cs" />
+    <Compile Include="protocol\p11\Server\sc_11300.cs" />
+    <Compile Include="protocol\p11\Server\sc_11402.cs" />
+    <Compile Include="protocol\p11\Server\sc_11502.cs" />
+    <Compile Include="protocol\p11\Server\sc_11503.cs" />
+    <Compile Include="protocol\p11\Server\sc_11505.cs" />
+    <Compile Include="protocol\p11\Server\sc_11507.cs" />
+    <Compile Include="protocol\p11\Server\sc_11509.cs" />
+    <Compile Include="protocol\p11\Server\sc_11511.cs" />
+    <Compile Include="protocol\p11\Server\sc_11602.cs" />
+    <Compile Include="protocol\p11\Server\sc_11604.cs" />
+    <Compile Include="protocol\p11\Server\sc_11606.cs" />
+    <Compile Include="protocol\p11\Server\sc_11608.cs" />
+    <Compile Include="protocol\p11\Server\sc_11610.cs" />
+    <Compile Include="protocol\p11\Server\sc_11702.cs" />
+    <Compile Include="protocol\p11\Server\sc_11704.cs" />
+    <Compile Include="protocol\p12\Client\cs_12002.cs" />
+    <Compile Include="protocol\p12\Client\cs_12004.cs" />
+    <Compile Include="protocol\p12\Client\cs_12006.cs" />
+    <Compile Include="protocol\p12\Client\cs_12008.cs" />
+    <Compile Include="protocol\p12\Client\cs_12011.cs" />
+    <Compile Include="protocol\p12\Client\cs_12017.cs" />
+    <Compile Include="protocol\p12\Client\cs_12020.cs" />
+    <Compile Include="protocol\p12\Client\cs_12022.cs" />
+    <Compile Include="protocol\p12\Server\sc_12001.cs" />
+    <Compile Include="protocol\p12\Server\sc_12003.cs" />
+    <Compile Include="protocol\p12\Server\sc_12005.cs" />
+    <Compile Include="protocol\p12\Server\sc_12007.cs" />
+    <Compile Include="protocol\p12\Server\sc_12009.cs" />
+    <Compile Include="protocol\p12\Server\sc_12010.cs" />
+    <Compile Include="protocol\p12\Server\sc_12012.cs" />
+    <Compile Include="protocol\p12\Server\sc_12018.cs" />
+    <Compile Include="protocol\p12\Server\sc_12019.cs" />
+    <Compile Include="protocol\p12\Server\sc_12021.cs" />
+    <Compile Include="protocol\p12\Server\sc_12023.cs" />
+    <Compile Include="protocol\p12\Server\sc_12024.cs" />
+    <Compile Include="protocol\p12\Server\sc_12033.cs" />
+    <EmbeddedResource Include="Interfaces.resx">
+      <DependentUpon>Interfaces.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="chr3-pet.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
